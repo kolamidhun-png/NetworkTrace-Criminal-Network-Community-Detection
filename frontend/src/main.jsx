@@ -8,7 +8,9 @@ import DatasetUpload from "./components/DatasetUpload";
 import CommunityInvestigation from "./components/CommunityInvestigation";
 import PathInvestigation from "./components/PathInvestigation";
 
-const API = "http://127.0.0.1:8000/api";
+const API =
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://127.0.0.1:8000/api";
 
 function App() {
   const [summary, setSummary] = useState(null);

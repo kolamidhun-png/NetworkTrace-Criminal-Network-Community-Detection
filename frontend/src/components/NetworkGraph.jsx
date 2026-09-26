@@ -1,7 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import cytoscape from "cytoscape";
 
-const API = "http://127.0.0.1:8000/api";
+const API =
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://127.0.0.1:8000/api";
 
 const COMMUNITY_COLORS = [
   "#6f9cff",
