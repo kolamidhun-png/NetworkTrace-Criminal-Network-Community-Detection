@@ -1,0 +1,367 @@
+/* =========================================================
+   NetworkTrace - Path Investigation
+   ========================================================= */
+
+.path-investigation-panel {
+  width: 100%;
+  margin: 24px 0;
+  padding: 22px;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 14px;
+  background: #0f1724;
+  color: #e5edf8;
+  box-sizing: border-box;
+}
+
+.path-investigation-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.path-investigation-header h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #f4f7fb;
+}
+
+.path-investigation-header p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.path-controls {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) 35px minmax(180px, 1fr) auto;
+  gap: 14px;
+  align-items: end;
+  padding: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 12px;
+  background: #111c2b;
+}
+
+.path-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.path-field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #aebbd0;
+}
+
+.path-field select {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #26364d;
+  border-radius: 8px;
+  background: #0b1320;
+  color: #e5edf8;
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.path-field select:focus {
+  border-color: #4f8fe8;
+  box-shadow: 0 0 0 2px rgba(79, 143, 232, 0.15);
+}
+
+.path-arrow {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6ea8fe;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.path-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.path-find-button,
+.path-clear-button {
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease,
+    background 0.15s ease;
+}
+
+.path-find-button {
+  border: 1px solid #4f8fe8;
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.path-find-button:hover:not(:disabled) {
+  background: #3478ee;
+  transform: translateY(-1px);
+}
+
+.path-find-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.path-clear-button {
+  border: 1px solid #334155;
+  background: #172235;
+  color: #cbd5e1;
+}
+
+.path-clear-button:hover {
+  background: #202f45;
+}
+
+.path-error {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  border-radius: 8px;
+  background: rgba(127, 29, 29, 0.18);
+  color: #fca5a5;
+  font-size: 13px;
+}
+
+.path-result {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 12px;
+  background: #111c2b;
+}
+
+.path-result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.path-result-header h3 {
+  margin: 0 0 5px;
+  font-size: 16px;
+  color: #f4f7fb;
+}
+
+.path-result-header span {
+  display: inline-flex;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.12);
+  color: #86efac;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.path-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.path-metric-card {
+  padding: 13px;
+  border: 1px solid rgba(148, 163, 184, 0.11);
+  border-radius: 9px;
+  background: #0d1725;
+}
+
+.path-metric-card span {
+  display: block;
+  margin-bottom: 6px;
+  color: #7f8da3;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.path-metric-card strong {
+  color: #e5edf8;
+  font-size: 15px;
+}
+
+.path-chain {
+  margin-bottom: 18px;
+}
+
+.path-chain h4,
+.path-hops h4 {
+  margin: 0 0 10px;
+  color: #dbe7f5;
+  font-size: 13px;
+}
+
+.path-chain-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid rgba(79, 143, 232, 0.16);
+  border-radius: 9px;
+  background: rgba(37, 99, 235, 0.06);
+}
+
+.path-chain-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.path-node {
+  padding: 7px 11px;
+  border: 1px solid rgba(79, 143, 232, 0.45);
+  border-radius: 7px;
+  background: rgba(37, 99, 235, 0.15);
+  color: #93c5fd;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.path-chain-arrow {
+  color: #64748b;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.path-hop-card {
+  margin-bottom: 10px;
+  padding: 13px;
+  border: 1px solid rgba(148, 163, 184, 0.11);
+  border-radius: 9px;
+  background: #0d1725;
+}
+
+.path-hop-card:last-child {
+  margin-bottom: 0;
+}
+
+.path-hop-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.path-hop-title strong {
+  color: #e5edf8;
+  font-size: 13px;
+}
+
+.path-hop-title span {
+  color: #64748b;
+  font-size: 10px;
+}
+
+.path-relationship-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.path-relationship {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  gap: 8px;
+  padding: 9px 10px;
+  border-radius: 7px;
+  background: #111c2b;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.path-relationship span:first-child {
+  color: #93c5fd;
+  font-weight: 600;
+}
+
+.path-no-result {
+  padding: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.11);
+  border-radius: 9px;
+  background: #0d1725;
+}
+
+.path-no-result strong {
+  color: #fbbf24;
+  font-size: 13px;
+}
+
+.path-no-result p {
+  margin: 6px 0 0;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+/* =========================================================
+   Responsive layout
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .path-controls {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .path-arrow {
+    display: none;
+  }
+
+  .path-actions {
+    grid-column: 1 / -1;
+  }
+
+  .path-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .path-relationship {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .path-investigation-panel {
+    padding: 14px;
+  }
+
+  .path-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .path-actions {
+    grid-column: auto;
+  }
+
+  .path-find-button,
+  .path-clear-button {
+    flex: 1;
+  }
+
+  .path-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .path-relationship {
+    grid-template-columns: 1fr;
+  }
+}
